@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Component Sample</title>
+</head>
+<body>
+<div id="app">
+    <button-counter @count-up="addHistory"></button-counter>
+    <ol>
+        <li v-for="history in clickHistories" :key="history.time">
+            <span>{{ history.time }}</span>
+            <span>：</span>
+            <span>{{ history.message }}</span>
+        </li>
+    </ol>
+
+</div>
+<script>
+    Vue.component('button-counter', {
+        template: '<button @click="countUp">You clicked me {{ count }} times.</button>',
+        data: function () {
+            return {
+                count: 0
+            }
+        },
+        methods: {
+            countUp() {
+                this.count = this.count + 1;
+                this.$emit('count-up', this.count);
+            }
+        }
+    });
+    new Vue({
+        el: '#app',
+        data: {
+            clickHistories: [{time: new Date(), message: "初期表示"}]
+        },
+        methods: {
+            addHistory(currentCount) {
+                this.clickHistories.push({time: new Date(), message: `count up ${currentCount}`});
+            }
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Count Up</title>
+</head>
+<body>
+<div id="app">
+    <p>{{ count }}</p>
+    <button v-on:click="countUp">countUp</button>
+</div>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            count: 0
+        },
+        methods: {
+            countUp() {
+                this.count = this.count + 1;
+            }
+        }
+    })
+</script>
+</body>
+</html>

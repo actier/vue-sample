@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <title>TODOアプリ</title>
+</head>
+<body>
+<div id="app">
+    <h1>TODOアプリ</h1>
+    <router-view></router-view>
+</div>
+<script>
+    const loginView = {
+        template: `
+        <div>
+            <label> ユーザ名
+                <input>
+            </label>
+            <label> パスワード
+                <input>
+            </label>
+            <button @click="login">ログイン</button>
+        </div>
+        `,
+        methods: {
+            login() {
+                this.$router.push('/todo');
+            }
+        }
+    };
+
+    const todoView = {
+        template: `
+        <div>
+            <input v-model="inputText">
+                <button @click="registerTask">タスク登録</button>
+                <p>TODO List</p>
+            <ol>
+                <li v-for="task in taskList" :key="task">
+                    <input type="checkbox">
+                    <span>{{ task }}</span>
+                </li>
+            </ol>
+        </div>
+        `,
+        data: function () {
+            return {
+                inputText: null,
+                taskList: [
+                    "牛乳を買う"
+                ]
+            }
+        },
+        methods: {
+            registerTask() {
+                this.taskList.push(this.inputText);
+                this.inputText = null;
+            }
+        }
+    };
+
+    Vue.component('login-view', loginView);
+    Vue.component('todo-view', todoView);
+
+    const router = new VueRouter({
+        routes: [
+            {path: '/', component: loginView},
+            {path: '/todo', component: todoView}
+        ]
+    });
+
+    new Vue({
+        el: '#app',
+        router: router
+    })
+</script>
+</body>
+</html>

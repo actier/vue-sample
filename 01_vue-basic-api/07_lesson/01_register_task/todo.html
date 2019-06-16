@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>TODOアプリ</title>
+</head>
+<body>
+<div id="app">
+    <input v-model="inputText">
+    <button @click="registerTask">タスク登録</button>
+    <p>TODO List</p>
+    <ol>
+        <li v-for="task in taskList" :key="task">
+            <input type="checkbox">
+            <span>
+                {{ task }}
+            </span>
+        </li>
+    </ol>
+</div>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            inputText: null,
+            taskList: [
+                "牛乳を買う"
+            ]
+        },
+        methods: {
+            registerTask() {
+                this.taskList.push(this.inputText);
+                this.inputText = null;
+            }
+        }
+    })
+</script>
+</body>
+</html>

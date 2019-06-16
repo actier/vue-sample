@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Attribute Bind</title>
+</head>
+<body>
+<div id="app">
+    <textarea v-bind:rows="textareaRowSize" v-bind:cols="textareaColSize">
+吾輩わがはいは猫である。名前はまだ無い。どこで生れたかとんと見当けんとうがつかぬ。
+何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを見た。
+    </textarea>
+</div>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            textareaRowSize: 4,
+            textareaColSize: 100
+        }
+    })
+</script>
+</body>
+</html>

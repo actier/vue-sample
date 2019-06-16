@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>TODOアプリ</title>
+</head>
+<style>
+    .task-done {
+        text-decoration: line-through;
+    }
+</style>
+<body>
+<div id="app">
+    <input v-model="inputText">
+    <button @click="registerTask">タスク登録</button>
+    <p>TODO List</p>
+    <ol>
+        <li v-for="task in taskList" :key="task">
+            <input type="checkbox"
+                v-model="task.status" true-value="done" false-value="notYet">
+            <span :class="taskStyle(task.status)">
+                {{ task.text }}
+            </span>
+        </li>
+    </ol>
+</div>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            inputText: null,
+            taskList: [
+                {status:"notYet" , text: "牛乳を買う"}
+            ]
+        },
+        methods: {
+            registerTask() {
+                this.taskList.push({status: "notYet", text: this.inputText});
+                this.inputText = null;
+            },
+            taskStyle(taskStatus) {
+                return {
+                    "task-done" : taskStatus === "done"
+                };
+            }
+        }
+    })
+</script>
+</body>
+</html>

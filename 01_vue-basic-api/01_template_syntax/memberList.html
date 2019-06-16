@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Member List</title>
+</head>
+<body>
+<div id="app">
+    <ul>
+        <li v-for="member in members" v-bind:key="member">
+            {{ member }}
+        </li>
+    </ul>
+</div>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            members: [
+                "Taro",
+                "Ken",
+                "Koji"
+            ]
+        }
+    })
+</script>
+</body>
+</html>

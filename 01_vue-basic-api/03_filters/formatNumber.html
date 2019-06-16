@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Form Input</title>
+</head>
+<body>
+<div id="app">
+    <p>元データ: {{ number }}</p>
+    <p>整形済み: {{ number | numberFormat }}</p>
+</div>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            number: 1000000
+        },
+        filters: {
+            numberFormat: function (value) {
+                const formatter = new Intl.NumberFormat('ja-JP');
+                return formatter.format(value);
+            }
+        }
+    })
+</script>
+</body>
+</html>
