@@ -1,1 +1,5 @@
+# for intellij
 .idea/
+
+# for nodejs
+node_modules/
