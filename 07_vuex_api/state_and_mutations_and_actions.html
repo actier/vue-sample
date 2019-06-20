@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vuex"></script>
+    <title>Vuex Sample</title>
+</head>
+<body>
+<script>
+    const store = new Vuex.Store({
+        state: {
+            login: {
+                time: null,
+                userName: null
+            }
+        },
+        mutations: {
+            loginSucceed(state, loginData) {
+                state.login.time = loginData.time;
+                state.login.userName = loginData.userName;
+            }
+        },
+        actions: {
+            login(context, userName) {
+                // TODO 本来はログインAPIを叩いてエラーハンドリングをする必要がある
+                context.commit('loginSucceed', {
+                    time: new Date(),
+                    userName: userName
+                });
+            }
+        }
+    });
+
+    // 更新前
+    console.log(store.state.login.time);
+    console.log(store.state.login.userName);
+
+    store.dispatch('login', "taniguchi");
+
+    // 更新後
+    console.log(store.state.login.time);
+    console.log(store.state.login.userName);
+</script>
+</body>
+</html>

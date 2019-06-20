@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vuex"></script>
+    <title>Vuex Sample</title>
+</head>
+<body>
+<script>
+    const store = new Vuex.Store({
+        state: {
+            login: {
+                time: new Date(),
+                userName: "taniguchi"
+            }
+        },
+        getters: {
+            loginTime(state) {
+                return state.login.time;
+            },
+            isLogin(state) {
+                return state.login.time !== null;
+            }
+        }
+    });
+
+    console.log(store.getters.loginTime);
+    console.log(store.getters.isLogin);
+</script>
+</body>
+</html>
